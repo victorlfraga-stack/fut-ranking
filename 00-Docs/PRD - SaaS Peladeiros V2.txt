@@ -1,0 +1,69 @@
+﻿PRD: SaaS Peladeiros – Core Analytics & Performance (MVP)
+1. Visão do Produto
+Ser o "CV" esportivo definitivo do atleta amador e dos torneios de peladeiros do Distrito Federal. O foco primário do produto não será na logística e gestão (quem vai ao jogo) já que identificamos que Grupos de WhatsApp seriam nosso concorrente primário, mas sim no resultado e na identidade do jogador, unificando a visualização da sua performance considerando as diferentes peladas que o jogador participa.
+2. Posicionamento Estratégico e Diferenciais Competitivos
+Diferente dos players dominantes, que focam na gestão operacional para extrair o dado, nosso foco é o dado para gerar status e evolução técnica.
+* Gaps de Mercado (Oportunidade): Apps como Chega+, Appito e Peladeiros são ferramentas de logística ("WhatsApp replacements") que tratam a estatística como um subproduto da organização.9 Isso gera dados fragmentados por grupo, alta fricção na entrada de dados e falta de uma visão de progresso para o atleta que joga em múltiplas peladas.
+* Nosso Diferencial: Posicionamo-nos como o "Strava do Futebol Amador". Nosso esforço central não está em "sortear times", mas em:
+   1. Unificação de Identidade: O jogador vê seu desempenho global em Brasília, independente de onde jogue.
+   2. Redução Radical de Fricção: Enquanto competidores exigem que o app esteja aberto durante todo o jogo para cronometragem, nosso MVP foca na "Súmula Relâmpago" pós-jogo via Scout Autoridade - um organizador que fica responsável por inserir os dados no app para visualização do ranking
+   3. Valor Emocional (Visual Over Data): Transformamos números frios em objetos de desejo social, como o "FIFA Style Card", priorizando a gamificação sobre a administração financeira
+3. Personas
+* O Casual Competitivo: Joga em múltiplos grupos (ex: Noroeste e Asa Sul), quer ver seu "FIFA Card" evoluir e comparar estatísticas com amigos e ver sua performance comparativa entre os diferentes grupos que participa.
+* O Jogador Casual da resenha: Participa dos eventos do seu grupo de amigos e é mais engajado pela resenha e encontrar a galera do que ter sua performance medida. 
+* O Scout (Organizador): O "dono da bola" que já lidera o grupo e quer ferramentas para valorizar sua pelada e ter autoridade técnica na resenha.
+4. Requisitos Funcionais (Core Features)
+4.1. Módulo do Atleta: A Identidade Unificada
+* RF01 - FIFA Style Card: Dashboard individual com atributos (Ritmo, Chute, Passe, Defesa, Físico) baseados nos dados das partidas.
+* RF02 - Histórico Multi-Pelada: Visão agregada de gols, assistências e vitórias, permitindo filtrar por "Temporada" ou "Região" (ex: desempenho apenas na Asa Sul).
+* RF03 - Ranking Regional (DF): Posicionamento do jogador em relação à base de usuários de Brasília e de grupos específicos.
+4.2. Módulo do Scout: A Súmula 30 Segundos
+* RF04 - Jornada de Súmula Rápida: Grid visual com as fotos dos jogadores participantes do grupo para que ele possa adicionar ao evento e marcar eventos capitais com 2 cliques - Gols, Assistências, Vitórias, Empates e Derrotas.
+* RF05 - Atribuição de Notas: Após o jogo, os jogadores participantes poderão atribuir notas de desempenho (1-5) para cada participante, que alimentará o "Overall" do jogador.
+* RF06 - Delegação de Partida: Capacidade de o Scout oficial designar um assistente para preencher os dados caso ele não possa comparecer.
+* RF07 - Notificação de Confirmação: Ao fechar a súmula, os atletas recebem um push: "O Scout registrou X gols para você".
+5. Experiência do Usuário (UX/UI)
+* Foco Mobile-First: Design otimizado para uso em beira de campo, com áreas de toque de no mínimo 44px para evitar erros sob sol ou cansaço .
+* Progressive Disclosure: Mostrar primeiro o "FIFA Card" (impacto visual); estatísticas detalhadas ficam em abas secundárias .
+* Visualização de Dados: Uso de gráficos de radar para atributos e gráficos de linha para evolução de performance.
+6. Roadmap e Próximos Passos (Evolução)
+Fase 1: Validação de Autoridade (MVP)
+* Lançamento para grupos selecionados.
+* Foco total na retenção do Scout através de Dashboards de Gestão Técnica.
+* Implementação da versão básica do “Fifa Card” com Gols, Assistências, Vitórias, Derrotas e Empates. 
+* Ranking do jogador por pelada que participa. O ranking levará em consideração Gols e Assistências do jogador, sendo que:
+   * Cada gol marcado = 3 pontos;
+   * Cada assistência dada = 2 pontos;
+   * A nota geral será composta por ptGols+ptAssist. 
+Fase 2: Social
+* Abertura para o "Mercado de Notas" (todos avaliam todos) para inserir o score overall.
+* Evoluir sistema de “Fifa Card” para inserir estatísticas médias
+* Introdução de "Badges" sociais (ex: "Artilheiro da RA", "Muralha do Noroeste").
+Fase 3: Integração Tecnológica
+* Implementar sistema de atributos para o “Fifa Card” do jogador;
+* Parcerias com arenas para consumo automático de dados de vídeo (replays de gols) .
+* Uso de IA para detectar padrões de fraude em autodeclaração de dados.
+7. Métricas de Sucesso (KPIs)
+* Adoção do Scout: % de partidas criadas que tiveram a súmula preenchida em até 12h.
+* Stickiness (Liveness): Média de avaliações recebidas por jogador por semana.
+* Viralidade Regional: Crescimento de novos usuários orgânicos dentro de uma mesma RA (Efeito de Rede).
+
+
+8. Fluxos chave de usuário
+* Cadastro e Onboading: Permitir que usuários possam fazer um cadastro simples na plataforma usando sua Google ou número de celular. O cadastro deve ser rápido e sem burocracia, pois entendemos que o jogador pode entrar no grupo minutos e momentos antes de um evento;
+* Criação de grupo de pelada: Permitir que usuários possam criar um grupo de pelada e convidar outros usuários para entrarem no grupo. Nesse momento, o criador do grupo automaticamente é o Scout e terá o status de “administrador” e ele poderá definir o nível de dificuldade da pelada (competitivo, resenha, etc.);
+* Criação de evento / partida: Scout poderá ver a lista de jogadores participantes do grupo, criar o evento e adicionar jogadores que estiverem presentes ou confirmados na lista de whatsapp. Ele pode adicionar jogadores durante o evento;
+* Atribuição das estatísticas para os jogadores: após finalizar a partida, o Scout poderá atribuir gols, assistências, vitórias, derrotas e empates para os jogadores.
+* Visualização do ranking da pelada: todos os jogadores poderão visualizar o ranking com os dados atualizados após cada evento e interagir com eles mesmos para visualizar o Fifa Card de cada um.
+
+
+Referências citadas
+1. Chega+ | A melhor forma de organizar e encontrar grupos de futebol., acessado em dezembro 29, 2025, https://www.chegamais.app/
+2. Fut card builder: Criar time - App Store - Apple, acessado em dezembro 29, 2025, https://apps.apple.com/ly/app/fut-card-builder-criar-time/id6455084660
+3. FC Card Creator - App Store, acessado em dezembro 29, 2025, https://apps.apple.com/us/app/fc-card-creator/id1512016829?l=pt-BR
+4. Campeonatos e Torneios | Asbac Brasília | Esportes, acessado em dezembro 29, 2025, https://www.asbacbrasilia.com.br/campeonatosetorneios
+5. FUT 26 Card Creator – Apps no Google Play, acessado em dezembro 29, 2025, https://play.google.com/store/apps/details?id=com.wagon.fccardcreator&hl=pt
+6. Chega+ App | Resenha, Avalie os peladeiros, Rankings e Destaque, acessado em dezembro 29, 2025, https://www.chegamais.app/pos-jogo
+7. Calendário Esportivo 2025 - AABB Brasília, acessado em dezembro 29, 2025, https://aabbdf.com.br/calendarios-esportivos-2024/
+8. Escolinhas de futebol em Brasília - Roteiro Baby, acessado em dezembro 29, 2025, https://roteirobaby.com.br/2015/09/escolinhas-de-futebol-em-brasilia.html
+9. Pesquisa de Mercado SaaS Peladeiros

@@ -1,0 +1,59 @@
+﻿Modelagem de Dados Completa
+
+
+1. Arquitetura de Entidades
+A estrutura foi desenhada para suportar a Unificação de Identidade, permitindo que o atleta veja seu desempenho global no Distrito Federal, independente de onde jogue.
+1.1. Tabela: Atletas
+O "CV" do jogador. Centraliza o FIFA Style Card
+* id_atleta (PK): Identificador único universal.
+* nome_completo: Nome para exibição em rankings e súmulas.
+* foto_url: Imagem para o grid visual da súmula e o Card.
+* ra_principal: Região Administrativa de preferência (ex: Asa Sul, Noroeste)
+* overall_global: Média ponderada de performance em todas as peladas
+* posicao_preferencial: (Goleiro, Zagueiro, Meia, Atacante).
+1.2. Tabela: Grupos
+A comunidade fixa (ex: "Pelada da AABB")
+* id_grupo (PK): Identificador da pelada.
+* nome_grupo: Nome social do grupo.
+* fator_k_dificuldade: Peso técnico (Nível da Pelada) para normalizar o ranking unificado
+* id_scout_adm (FK): Referência ao atleta que detém a "Autoridade de Scout”
+* localizacao_ra: Região onde a pelada ocorre (ex: Asa Sul)
+
+
+1.3. Tabela: Membros_Grupo (Tabela Auxiliar)
+Define quem são os participantes fixos/mensalistas de um grupo.
+* id_grupo (FK): Vinculação ao grupo.
+* id_atleta (FK): Vinculação ao atleta membro.
+
+
+
+
+1.4. Tabela: Partidas (Evento da Noite)
+O "balde" de dados de uma sessão específica.
+* id_partida (PK): Identificador do evento.
+* id_grupo (FK): Vinculação ao grupo de origem.
+* data_evento: Data para controle de "Temporada" e evolução temporal
+* gols_total_noite: Soma para a Trava de Consistência (RF08)
+* status_sumula: (Aberta, Fechada, Revisão Pendente)
+
+
+1.5. Tabela: Participantes_Partida (Check-in/Presença)
+A lista dos confirmados. É o filtro para a interface do Scout.
+* id_partida (FK): Vinculação ao evento daquela data.
+* id_atleta (FK): Vinculação aos atletas que de fato compareceram.
+
+
+1.6. Tabela: Desempenho_Scout (A Súmula)
+Onde os scouts individuais moram e alimentam o Card
+* id_scout (PK): Registro único.
+* id_partida (FK): Referência ao evento.
+* id_atleta (FK): Referência ao jogador (Identidade Unificada).
+* gols: Quantidade de gols marcados
+* assistencias: Quantidade de assistências.
+* vitorias / empates / derrotas: Retrospecto de competitividade na sessão.
+* nota_desempenho: Avaliação 0-10 dada pelo Scout (Alimenta o Overall).
+
+
+2. Regras de Inteligência de Dados
+1. Filtro de Contexto: A interface de Súmula Rápida (RF04) deve exibir apenas os atletas listados em Participantes_Partida para aquele id_partida.
+2. Cálculo Unificado ($P_u$): O desempenho global é calculado cruzando a nota_desempenho com o fator_k_dificuldade do grupo.

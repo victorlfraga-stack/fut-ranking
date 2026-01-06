@@ -1,0 +1,257 @@
+================================================================================
+GUIA DIÁRIO - FutRanking SaaS
+Comandos e Rotina de Trabalho
+================================================================================
+
+📌 Este documento contém tudo que você precisa saber para trabalhar no projeto
+   todos os dias. Guarde este arquivo em um lugar fácil de acessar!
+
+================================================================================
+🚀 INICIAR O PROJETO (Todo Dia ao Começar a Trabalhar)
+================================================================================
+
+1. Abra o Terminal no seu Mac
+
+2. Navegue até a pasta do projeto (copie e cole este comando):
+   cd "/Users/victorfraga/Library/Mobile Documents/com~apple~CloudDocs/01-Work/03-FutRanking/futranking"
+
+3. Inicie o servidor de desenvolvimento:
+   npm run dev
+
+4. Aguarde a mensagem: "✓ Ready on http://localhost:3000"
+
+5. Abra seu navegador e acesse: http://localhost:3000
+
+✅ PRONTO! O projeto está rodando.
+
+⚠️ IMPORTANTE: Deixe o Terminal aberto enquanto trabalha. 
+   Para parar o servidor, pressione Ctrl + C no Terminal.
+
+
+================================================================================
+📝 COMANDOS ÚTEIS DO TERMINAL
+================================================================================
+
+📍 NAVEGAR ATÉ A PASTA DO PROJETO (copie e cole):
+   cd "/Users/victorfraga/Library/Mobile Documents/com~apple~CloudDocs/01-Work/03-FutRanking/futranking"
+
+🔄 INICIAR O SERVIDOR:
+   npm run dev
+
+⏹️ PARAR O SERVIDOR (quando terminar de trabalhar):
+   Pressione Ctrl + C no Terminal
+
+📦 INSTALAR NOVA DEPENDÊNCIA (quando eu te pedir):
+   npm install nome-do-pacote
+
+🔍 VERIFICAR ERROS NO CÓDIGO:
+   npm run lint
+
+🏗️ COMPILAR PARA PRODUÇÃO (quando for publicar):
+   npm run build
+
+▶️ RODAR VERSÃO DE PRODUÇÃO:
+   npm start
+
+
+================================================================================
+🛠️ INSTALAR COMPONENTES SHADCNUI (quando necessário)
+================================================================================
+
+Quando eu te pedir para adicionar um componente ShadcnUI, execute:
+
+1. Certifique-se de estar na pasta do projeto (use o comando "cd" acima)
+
+2. Execute o comando (substitua "nome-do-componente" pelo que eu pedir):
+   npx shadcn@latest add nome-do-componente
+
+Exemplos de componentes comuns:
+   npx shadcn@latest add button
+   npx shadcn@latest add card
+   npx shadcn@latest add table
+   npx shadcn@latest add input
+   npx shadcn@latest add dialog
+   npx shadcn@latest add dropdown-menu
+
+
+================================================================================
+🗄️ SUPABASE - Comandos e Acessos
+================================================================================
+
+🌐 ACESSAR O DASHBOARD DO SUPABASE:
+   1. Acesse: https://supabase.com/dashboard
+   2. Faça login com sua conta
+   3. Selecione o projeto "FutRanking"
+
+📊 VER TABELAS DO BANCO DE DADOS:
+   - No dashboard, clique em "Table Editor" no menu lateral
+   - Você verá todas as tabelas criadas
+
+📝 EDITAR SQL (criar/modificar tabelas):
+   - No dashboard, clique em "SQL Editor"
+   - Clique em "New Query"
+   - Cole o código SQL que eu te passar
+   - Clique em "Run" (ou pressione Cmd/Ctrl + Enter)
+
+🔐 CONFIGURAR AUTENTICAÇÃO:
+   - No dashboard, clique em "Authentication"
+   - Depois clique em "Providers"
+   - Configure Google, Email, Phone conforme necessário
+
+📁 VER ARQUIVOS DE STORAGE (fotos de perfil):
+   - No dashboard, clique em "Storage"
+   - Veja os buckets criados (ex: "avatars")
+
+
+================================================================================
+✅ CHECKLIST DIÁRIO
+================================================================================
+
+☐ [ ] Abri o Terminal
+☐ [ ] Naveguei até a pasta do projeto (comando "cd")
+☐ [ ] Executei "npm run dev"
+☐ [ ] Vejo a mensagem "Ready on http://localhost:3000"
+☐ [ ] Abri o navegador em http://localhost:3000
+☐ [ ] O projeto está funcionando (sem erros na tela)
+
+Se algo der errado:
+☐ [ ] Verifiquei se estou na pasta correta
+☐ [ ] Verifiquei se o arquivo .env.local existe e está correto
+☐ [ ] Anotei o erro que apareceu e pedi ajuda
+
+
+================================================================================
+⚠️ PROBLEMAS COMUNS E SOLUÇÕES
+================================================================================
+
+❌ ERRO: "command not found: npm"
+   SOLUÇÃO: O Node.js não está instalado. Precisamos instalar primeiro.
+
+❌ ERRO: "invalid supabaseURL"
+   SOLUÇÃO: Normal se ainda não configuramos o Supabase.
+            Ou verifique se o arquivo .env.local tem as credenciais corretas.
+
+❌ ERRO: "Port 3000 is already in use"
+   SOLUÇÃO: Outro processo está usando a porta. 
+            - Feche outras abas do navegador com localhost:3000
+            - Ou pare outros servidores que possam estar rodando
+
+❌ ERRO: "Cannot find module..."
+   SOLUÇÃO: Execute: npm install
+            Isso reinstala todas as dependências.
+
+❌ A PÁGINA NÃO CARREGA ou aparece erro branco
+   SOLUÇÃO: 
+   1. Pare o servidor (Ctrl + C)
+   2. Execute: npm install
+   3. Execute: npm run dev novamente
+   4. Recarregue a página no navegador (Cmd + R)
+
+
+================================================================================
+📚 ARQUIVOS IMPORTANTES DO PROJETO
+================================================================================
+
+📄 .env.local
+   - Contém as credenciais do Supabase
+   - NUNCA compartilhe este arquivo
+   - Está na raiz do projeto "futranking/"
+
+📄 package.json
+   - Lista todas as dependências do projeto
+   - Contém os scripts (dev, build, etc.)
+
+📄 components.json
+   - Configuração do ShadcnUI
+   - Não precisa mexer normalmente
+
+📄 README.md
+   - Documentação básica do projeto
+   - Estrutura de pastas
+
+📄 SUPABASE_SETUP.md
+   - Instruções para configurar o Supabase
+   - Está na pasta "futranking/"
+
+
+================================================================================
+🔄 FLUXO DE TRABALHO TÍPICO
+================================================================================
+
+MANHÃ (Iniciar):
+1. Abra o Cursor (seu editor de código)
+2. Abra o projeto FutRanking
+3. Abra o Terminal
+4. Execute: cd (comando para ir à pasta)
+5. Execute: npm run dev
+6. Abra o navegador em localhost:3000
+7. Comece a trabalhar!
+
+DURANTE O TRABALHO:
+- Faça suas alterações no código (Cursor)
+- Salve os arquivos (Cmd + S)
+- Veja as mudanças no navegador (atualiza automaticamente)
+- Se aparecer erro, me avise com a mensagem completa
+
+FINAL DO DIA (Encerrar):
+1. Pare o servidor no Terminal (Ctrl + C)
+2. Salve todos os arquivos
+3. Feche o Terminal (opcional)
+
+
+================================================================================
+💡 DICAS IMPORTANTES
+================================================================================
+
+✅ SEMPRE salve os arquivos depois de editar (Cmd + S)
+
+✅ O Next.js atualiza automaticamente quando você salva um arquivo
+   (não precisa recarregar a página manualmente)
+
+✅ Se algo estranho acontecer, recarregue a página (Cmd + R)
+
+✅ Deixe o Terminal sempre visível para ver mensagens de erro
+
+✅ Quando eu criar novos arquivos, eles aparecerão automaticamente no Cursor
+
+✅ Nunca delete arquivos que você não criou (pode quebrar o projeto)
+
+✅ Se tiver dúvida, me pergunte! Não tenha medo de perguntar.
+
+
+================================================================================
+📞 QUANDO PRECISAR DE AJUDA
+================================================================================
+
+Quando pedir ajuda, sempre me informe:
+
+1. O que você estava tentando fazer?
+2. Qual comando você executou? (copie e cole)
+3. Qual erro apareceu? (copie a mensagem completa)
+4. Em que passo você está? (Fase 1, 2, etc.)
+
+
+================================================================================
+🎯 PRÓXIMOS PASSOS (Depois de Configurar Tudo)
+================================================================================
+
+Quando tudo estiver funcionando, você vai:
+
+1. Trabalhar no código (eu te guio)
+2. Testar no navegador
+3. Ver as mudanças em tempo real
+4. Criar novas funcionalidades
+5. Integrar com o Supabase
+
+Mas por enquanto, vamos passo a passo! 🚀
+
+
+================================================================================
+📝 ÚLTIMA ATUALIZAÇÃO: Dezembro 2024
+================================================================================
+
+Este guia será atualizado conforme necessário.
+Guarde este arquivo sempre à mão!
+
+================================================================================
+

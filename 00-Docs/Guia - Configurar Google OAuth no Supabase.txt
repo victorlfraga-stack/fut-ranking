@@ -1,0 +1,226 @@
+================================================================================
+GUIA COMPLETO: CONFIGURAR GOOGLE OAUTH NO SUPABASE
+SaaS Peladeiros - FutRanking
+================================================================================
+Este guia detalha passo a passo como configurar autenticação com Google OAuth
+no Supabase para o projeto FutRanking.
+================================================================================
+
+PARTE 1: CONFIGURAR NO GOOGLE CLOUD CONSOLE
+================================================================================
+
+1.1. ACESSAR GOOGLE CLOUD CONSOLE
+----------------------------------
+1. Acesse: https://console.cloud.google.com
+2. Faça login com sua conta Google
+
+
+1.2. CRIAR OU SELECIONAR PROJETO
+---------------------------------
+1. No topo da página, clique no seletor de projetos (ao lado do logo do Google Cloud)
+2. Opção A - Criar novo projeto:
+   - Clique em "New Project"
+   - Nome: "FutRanking" (ou qualquer nome de sua preferência)
+   - Clique em "Create"
+   - Aguarde alguns segundos
+3. Opção B - Usar projeto existente:
+   - Selecione o projeto na lista
+
+
+1.3. HABILITAR GOOGLE+ API (SE NECESSÁRIO)
+-------------------------------------------
+1. No menu lateral esquerdo, vá em "APIs & Services" → "Library"
+2. Busque por "Google+ API"
+3. Se não estiver habilitada, clique em "Enable"
+
+
+1.4. CONFIGURAR TELA DE CONSENTIMENTO OAUTH (SE NECESSÁRIO)
+-------------------------------------------------------------
+1. No menu lateral, vá em "APIs & Services" → "OAuth consent screen"
+2. Se pedir para configurar:
+   - User Type: Escolha "External" (ou "Internal" se for Google Workspace)
+   - Clique em "Create"
+3. Preencha os dados obrigatórios:
+   - App name: "FutRanking" (ou nome de sua escolha)
+   - User support email: Seu email
+   - Developer contact information: Seu email
+   - Clique em "Save and Continue"
+4. Scopes (pode pular por enquanto):
+   - Clique em "Save and Continue"
+5. Test users (se em modo de teste):
+   - Pode pular ou adicionar emails de teste
+   - Clique em "Save and Continue"
+6. Summary:
+   - Revise e clique em "Back to Dashboard"
+
+
+1.5. CRIAR CREDENCIAIS OAUTH 2.0
+---------------------------------
+1. No menu lateral, vá em "APIs & Services" → "Credentials"
+2. Clique em "+ Create Credentials" (no topo)
+3. Selecione "OAuth 2.0 Client ID"
+4. Se pedir, selecione "Web application"
+5. Configure o OAuth Client:
+   - Name: "FutRanking Web Client" (ou nome de sua escolha)
+   - Authorized JavaScript origins: Deixe vazio por enquanto (ou adicione
+     http://localhost:3000 para desenvolvimento)
+   - Authorized redirect URIs: IMPORTANTE - você vai adicionar a URL do
+     Supabase aqui:
+     * Antes de preencher, vá para o Supabase (veja PARTE 2 abaixo) para
+       copiar a Redirect URL
+     * Depois volte aqui e clique em "+ Add URI"
+     * Cole a URL: https://[seu-projeto-id].supabase.co/auth/v1/callback
+     * Exemplo: https://abcdefghijklmnop.supabase.co/auth/v1/callback
+6. Clique em "Create"
+
+
+1.6. COPIAR CREDENCIAIS
+------------------------
+1. Uma janela popup vai aparecer com suas credenciais
+2. Copie as duas informações:
+   - Client ID: Uma string longa tipo
+     123456789-abcdefghijklmnop.apps.googleusercontent.com
+   - Client Secret: Uma string tipo GOCSPX-abcdefghijklmnopqrstuvwxyz
+3. IMPORTANTE: Anote essas credenciais (você vai usá-las no Supabase)
+4. Se fechou a janela, você pode ver as credenciais novamente:
+   - Em "Credentials", clique no nome do OAuth Client que você criou
+   - O Client ID aparece diretamente
+   - O Client Secret aparece ao lado (clique em "Show" se necessário)
+
+
+================================================================================
+PARTE 2: CONFIGURAR NO SUPABASE
+================================================================================
+
+2.1. OBTER REDIRECT URL DO SUPABASE
+------------------------------------
+1. Acesse: https://supabase.com/dashboard
+2. Selecione seu projeto "FutRanking"
+3. No menu lateral, vá em "Authentication" → "Providers"
+4. Clique na aba "Google"
+5. Antes de ativar, procure a seção que mostra a "Redirect URL" ou
+   "Callback URL"
+   - Deve ser algo como: https://[seu-projeto-id].supabase.co/auth/v1/callback
+   - Copie essa URL completa
+
+
+2.2. VOLTAR AO GOOGLE CLOUD CONSOLE PARA ADICIONAR REDIRECT URI
+-----------------------------------------------------------------
+1. Volte ao Google Cloud Console
+2. Vá em "APIs & Services" → "Credentials"
+3. Clique no OAuth Client que você criou
+4. Em "Authorized redirect URIs", adicione a URL que você copiou do Supabase
+5. Clique em "Save"
+
+
+2.3. CONFIGURAR GOOGLE PROVIDER NO SUPABASE
+--------------------------------------------
+1. Volte ao Supabase Dashboard
+2. Vá em "Authentication" → "Providers"
+3. Clique em "Google"
+4. Ative o toggle "Enable Google provider"
+5. Cole suas credenciais:
+   - Client ID (for OAuth): Cole o Client ID que você copiou do Google Cloud
+   - Client Secret (for OAuth): Cole o Client Secret que você copiou do
+     Google Cloud
+6. Clique em "Save"
+
+
+2.4. VERIFICAR SE ESTÁ FUNCIONANDO
+-----------------------------------
+1. Ainda em "Authentication" → "Providers" → "Google"
+2. Você deve ver:
+   - Toggle ativado (verde)
+   - Campos preenchidos com suas credenciais
+   - Mensagem de sucesso (se houver)
+
+
+================================================================================
+PARTE 3: CONFIGURAR URLS DE REDIRECIONAMENTO NO SUPABASE
+================================================================================
+
+3.1. CONFIGURAR SITE URL E REDIRECT URLS
+-----------------------------------------
+1. No Supabase Dashboard, vá em "Authentication" → "URL Configuration"
+2. Configure:
+   - Site URL:
+     * Para desenvolvimento: http://localhost:3000
+     * (Você vai adicionar a URL de produção depois, quando fizer deploy)
+   - Redirect URLs: Clique em "+ Add URL" e adicione:
+     * http://localhost:3000/auth/callback (para desenvolvimento)
+     * http://localhost:3000/** (wildcard para desenvolvimento)
+     * (Depois, adicione também a URL de produção quando fizer deploy)
+3. Clique em "Save"
+
+
+================================================================================
+PARTE 4: TESTAR A CONFIGURAÇÃO (OPCIONAL - DEPOIS DE IMPLEMENTAR LOGIN)
+================================================================================
+
+Depois de implementar a página de login na etapa 1.3, você pode testar:
+
+1. Acesse sua aplicação em http://localhost:3000/login
+2. Clique no botão "Login com Google"
+3. Você deve ser redirecionado para a página de autenticação do Google
+4. Após autorizar, deve ser redirecionado de volta para sua aplicação
+
+
+================================================================================
+CHECKLIST FINAL
+================================================================================
+
+Confirme que fez tudo:
+
+[ ] Projeto criado no Google Cloud Console
+[ ] Tela de Consentimento OAuth configurada
+[ ] OAuth 2.0 Client ID criado
+[ ] Redirect URI do Supabase adicionado nas Authorized redirect URIs
+[ ] Client ID e Client Secret copiados
+[ ] Google Provider ativado no Supabase
+[ ] Client ID e Client Secret colados no Supabase
+[ ] Site URL configurado no Supabase (http://localhost:3000)
+[ ] Redirect URLs configuradas no Supabase
+
+
+================================================================================
+SEGURANÇA E BOAS PRÁTICAS
+================================================================================
+
+1. Nunca commite o Client Secret no Git
+2. Use variáveis de ambiente se necessário (mas no caso do Supabase, ele já
+   gerencia isso)
+3. Para produção, adicione também a URL de produção nas configurações
+4. Revise periodicamente as credenciais OAuth no Google Cloud Console
+
+
+================================================================================
+RECURSOS ÚTEIS
+================================================================================
+
+- Google Cloud Console: https://console.cloud.google.com
+- Supabase Dashboard: https://supabase.com/dashboard
+- Documentação OAuth do Google:
+  https://developers.google.com/identity/protocols/oauth2
+
+
+================================================================================
+PROBLEMAS COMUNS E SOLUÇÕES
+================================================================================
+
+ERRO: "redirect_uri_mismatch"
+Solução: Verifique se a Redirect URI no Google Cloud está exatamente igual
+         à do Supabase (incluindo https:// e caminho completo)
+
+ERRO: "invalid_client"
+Solução: Verifique se o Client ID e Client Secret estão corretos e foram
+         copiados completamente
+
+ERRO: "access_denied" na tela de consentimento
+Solução: Verifique se a tela de consentimento OAuth está configurada
+         corretamente no Google Cloud Console
+
+
+================================================================================
+FIM DO GUIA
+================================================================================
+
